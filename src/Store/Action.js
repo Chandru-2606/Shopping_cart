@@ -224,7 +224,7 @@ return(
      {!collapsed && <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
         <div >
-    <div >
+    <div className="phove-navBar" >
             <span> Color</span><br/>
 
     <div className="colorFilter">
@@ -336,7 +336,7 @@ return(
     <span>Price</span><br />
     <div className="priceFilter">
     <input type="checkbox" name="a" onClick={()=> onFilter("250","a")}/>
-    <label>Rs 0-250 sss</label> <br/>
+    <label>Rs 0-250 </label> <br/>
 
     <input type="checkbox" name="b" onClick={()=> onFilter("350","price")}/>
     <label>RS 251-450</label> <br/>

@@ -16,7 +16,7 @@
 
 .header-name{
     margin-top: 16px;
-    margin-left: 60px;
+    /* margin-left: 60px; */
 }
 .header-name a{
     font-size: 18px;
@@ -49,5 +49,6 @@
      }
      .header-name a{
         font-size: 15px;
+        margin-left: 10px;
      }
 }

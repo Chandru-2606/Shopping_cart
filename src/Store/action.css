@@ -194,6 +194,13 @@
 }
 
 @media only screen and (max-width: 480px) {
+    .phove-navBar{
+        padding: 5px;
+    }
+    .phove-navBar span{
+        font-weight: bolder;
+        margin-top: 10px;
+    }
 #filter-btn{
     display: flex;
     margin-left: 20px;
@@ -223,7 +230,7 @@
   width: 80%;
 }
 .container-foot button{
-    width: 110px;
+    width: 90px;
     font-size: 10px;
 }
 .main-container{
@@ -249,8 +256,26 @@
 }
 }
 
-
 .ant-layout-sider.ant-layout-sider-dark{
     background-color: white;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)
+    flex: none;
+    max-width: 110px !important;
+    min-width: 120px !important;
+    width: 100px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    font-family: 'Poppins', sans-serif;
+    margin-top: 50px;
 }
+
+.colorFilter , .genderfilter , .priceFilter , .typeFilter{
+    margin-left: 10px;
+}
+.colorFilter label , .genderfilter label , .typeFilter label {
+    margin-left: 10px;
+}
+
+
+.ant-layout {
+    background: none;
+}
+
