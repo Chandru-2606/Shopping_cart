@@ -21,6 +21,7 @@
 .header-name a{
     font-size: 18px;
     color: black;
+    padding: 5px;
 }
 
 .cart-details a{
