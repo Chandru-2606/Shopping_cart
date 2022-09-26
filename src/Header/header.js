@@ -33,7 +33,7 @@ function Header (props) {
             <button onClick={() => { 
                navigate("/Cart");
         }}>
-            <Badge count={cartProducts.length} shape="circle" size="medium">
+            <Badge count={cartProducts.length} shape="circle" size="large">
                 <ShoppingCartOutlined  size="large" />
             </Badge>
             </button>

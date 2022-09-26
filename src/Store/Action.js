@@ -381,7 +381,7 @@ return(
             <div className="footer-btn">
 
             <button id="incrementbtn" onClick={(e)=>{changeCount(item.id,item?.count - 1)}} ><p>-</p></button >
-            <h3>{item?.count}</h3> <button id="incrementbtn" onClick={(e)=>{changeCount(item.id,item?.count + 1)}}><p>+</p></button>
+            <h3 style={{margin:0}}>{item?.count}</h3> <button id="incrementbtn" onClick={(e)=>{changeCount(item.id,item?.count + 1)}}><p>+</p></button>
              </div>:
              <button onClick={event => onAdd (event , {id})}><p>Add to cart</p></button>
             }

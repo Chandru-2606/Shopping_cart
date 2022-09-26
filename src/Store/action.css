@@ -48,6 +48,7 @@
 }
 .footer-btn {
     display: flex;
+    align-items: center;
 }
 .container-foot button{
     width: 100px;

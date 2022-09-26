@@ -30,6 +30,10 @@
     color: black;
 }
 
+.ant-scroll-number-only-unit.current{
+    font-size: 12px;
+}
+
 .cart-details button{
     border: none;
     cursor: pointer;
@@ -37,7 +41,11 @@
 }
 
 .cart-details span{
-    font-size: 24px;
+    /* font-size: 24px; */
+}
+
+.anticon.anticon-shopping-cart{
+       font-size: 24px;
 }
 
 .ant-scroll-number .ant-badge-count{
