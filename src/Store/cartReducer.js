@@ -1,17 +1,16 @@
 const expensesReducerDefaultState = [];
 
 export default (state = expensesReducerDefaultState, action) => {
-    console.log("Expenses" + JSON.stringify(state))
     switch (action.type) {
-        case 'ADD_EXPENSE':
+        case 'ADD_CART':
             console.log("action.expense:", action.expense)
             return [
                 ...state,
                 action.expense
             ];
-        case 'REMOVE_EXPENSE':
+        case 'REMOVE_CART':
             return state.filter(({ product_id }) => product_id !== action.id);
-        case 'EDIT_EXPENSE':
+        case 'EDIT_CART':
             return state.map((expense) => {
                 if (expense.product_id === action.id) {
                     return {

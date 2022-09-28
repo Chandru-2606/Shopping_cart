@@ -65,15 +65,9 @@ useEffect(()=>{
 
 },[post])
 
-//   console.log("postData", copyPost)
 
-
-  
-// console.log(post)
-  
 
   const searchFunc = (e) => {
-    // console.log(e)
     setSearchText(e)
   }
 
@@ -84,22 +78,16 @@ useEffect(()=>{
         ((items.color).toLowerCase()).includes(seachText.toLowerCase()) || 
         ((items.type).toLowerCase()).includes(seachText.toLowerCase()))  
       })
-      console.log("filteredArray", filteredArray)
       setCopyPost(filteredArray)
   }
 
 const onAdd = (event ,param) =>{
-//     console.log("param", param.id)
-//     post.map((item,index) => {
-// if(item.id == param.id){
+
     setDisplay([...display, param.id])
-    dispatch({type:"ADD_EXPENSE",expense:{product_id:param.id,count:1}})
-//}
-    //})
-   // setDisplay(true)
+    dispatch({type:"ADD_CART",expense:{product_id:param.id,count:1}})
+
    console.log(display)
 }
-// console.log(display)
 
 
 useEffect(()=>{
@@ -110,13 +98,10 @@ useEffect(()=>{
 },[cartProducts])
 
 const changeCount = (product_id,count) =>{
-
     let changedItem = post.filter(({ id }) => id == product_id)
     changedItem=changedItem?.[0]
 
-
-    if(count == 0)
-    {
+    if(count == 0){
         let removedCount = copyPost.map((product) => {
             if (product.id === product_id) {
                 return {
@@ -130,14 +115,14 @@ const changeCount = (product_id,count) =>{
 
         setCopyPost(removedCount)
 
-        dispatch({type:"REMOVE_EXPENSE",id:product_id})
+        dispatch({type:"REMOVE_CART",id:product_id})
         return
     }
 
 
     if(changedItem.quantity >= count)
     {
-        dispatch({type:"EDIT_EXPENSE",id:product_id,updates:{count:count}})
+        dispatch({type:"EDIT_CART",id:product_id,updates:{count:count}})
     }else{
         alert("No stock")
     }
@@ -148,53 +133,44 @@ const onFilter = (e, type) =>{
     // console.log(e)
     if( type ){
         let colors = document.querySelector(".colorFilter").querySelectorAll("input:checked")
+        let selectedColors = [...colors].map(a => a.name);
+        console.log("selectedColors", colors)
 
         let gender =document.querySelector(".genderfilter").querySelectorAll("input:checked")
+        let selectedGender = [...gender].map(a => a.name);
+        console.log("selectedGender", selectedGender)
         
         let type =document.querySelector(".typeFilter").querySelectorAll("input:checked")
         console.log("type", type)
-
-    let price =document.querySelector(".priceFilter").querySelectorAll("input:checked")
-
-
-        let selectedColors = [...colors].map(a => a.name);
-        console.log("selectedColors", selectedColors)
-
-        let selectedGender = [...gender].map(a => a.name);
-        console.log("selectedGender", selectedGender)
-
         let selectedType = [...type].map(a => a.name);
         console.log("selectedType", selectedType)
 
+        let price =document.querySelector(".priceFilter").querySelectorAll("input:checked")
         let selectedPrice = [...price].map(a => a.name);
         console.log("selectedType", selectedPrice)
 
-
-
-
-
         let filteredArray = post.filter((item) => {
-            return ((selectedColors.length>0 ? (selectedColors).includes(item.color) : true )   &&
+            return ((selectedColors.length > 0 ? (selectedColors).includes(item.color) : true )   &&
             (selectedGender.length>0 ? (selectedGender).includes(item.gender) : true) &&
             (selectedType.length>0 ?  (selectedType).includes(item.type) : true) &&
             (selectedPrice.includes("a") ? item.price <= 250 :true) &&
-            (selectedPrice.includes("b") ? (item.price > 250 &&item.price <= 450 ) :true) &&
+            (selectedPrice.includes("b") ? (item.price > 250 && item.price <= 450 ) :true) &&
             (selectedPrice.includes("c") ? (item.price > 450) :true)
 
              )})
-
+      
       setCopyPost(filteredArray)
 
 
     console.log("selectedPrice", price)
 
-    if(type){
-        const filtered = filteredArray.filter(employee => {
-                        return employee.type <= 250;
-                  })
-                  console.log("filtered", filtered)
+    // if(type){
+    //     const filtered = filteredArray.filter(employee => {
+    //                     return employee.type <= 250;
+    //               })
+    //               console.log("filtered", filtered)
 
-    }
+    // }
     
 
 }
@@ -381,8 +357,9 @@ return(
             <div className="footer-btn">
 
             <button id="incrementbtn" onClick={(e)=>{changeCount(item.id,item?.count - 1)}} ><p>-</p></button >
-            <h3 style={{margin:0}}>{item?.count}</h3> <button id="incrementbtn" onClick={(e)=>{changeCount(item.id,item?.count + 1)}}><p>+</p></button>
-             </div>:
+            <h3 >{item?.count}</h3> 
+            <button id="incrementbtn" onClick={(e)=>{changeCount(item.id,item?.count + 1)}}><p>+</p></button>
+             </div> :
              <button onClick={event => onAdd (event , {id})}><p>Add to cart</p></button>
             }
             </div>

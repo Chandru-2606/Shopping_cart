@@ -7,6 +7,7 @@ import './cart.css';
 
 function Cart () {
  const [newData, setNewData] = useState([])
+
  const post = useSelector((state)=>state.post.data);
  const cartProducts = useSelector((state)=>state.cartReducer);
 
@@ -22,11 +23,8 @@ function Cart () {
    console.log("eeeeee", product_id)
 
 
-    // dispatch({
-    //    type: "REMOVE_EXPENSE",
-    //    payload: product_id
-    // })
-    dispatch({type:"REMOVE_EXPENSE",id:product_id})
+
+    dispatch({type:"REMOVE_CART",id:product_id})
 
  }
     return(
