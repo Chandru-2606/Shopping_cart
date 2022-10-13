@@ -3,7 +3,7 @@ const expensesReducerDefaultState = [];
 export default (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
         case 'ADD_CART':
-            console.log("action.expense:", action.expense)
+            // console.log("action.expense:", action.expense)
             return [
                 ...state,
                 action.expense

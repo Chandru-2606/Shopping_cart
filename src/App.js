@@ -7,6 +7,7 @@ import {
 
 import Dashboard from './Dashboard/dashboard'; 
 import Cart from './Cart/cart';
+import Task from './Task/task';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/Cart" element={<Cart />} />
+        <Route path="/Task" element={<Task />} />
+
 
     
 

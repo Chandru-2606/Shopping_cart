@@ -21,18 +21,16 @@ function Cart () {
 
     const onDelete = (product_id) => {
    console.log("eeeeee", product_id)
-
-
-
     dispatch({type:"REMOVE_CART",id:product_id})
-
  }
+ 
     return(
         <div>
             <Header name="Cart" />
           <h1>Shooping Cart</h1>
 {newData && newData.map((item, index)=>{
     return(
+        
         <div className="cart-container">
             <img src={item.imageURL} />
             <div className="cart-type">

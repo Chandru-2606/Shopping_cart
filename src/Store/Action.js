@@ -3,21 +3,14 @@ import './action.css';
 import {SearchOutlined, FilterOutlined  } from '@ant-design/icons';
 import axios from "axios";
 import 'antd/dist/antd.css';
+import { useNavigate } from "react-router-dom";
 
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-  } from '@ant-design/icons';
 
-import { Layout, Menu } from 'antd';
+
+import { Layout } from 'antd';
 
 import {useDispatch, useSelector} from "react-redux"
 const { Header, Sider, Content } = Layout;
-
-
 
 function Action(){
     const [seachText, setSearchText] = useState("")
@@ -28,7 +21,7 @@ function Action(){
 
 //  const [selectedColors, setSelectedColors] = useState([])
 
-
+let navigate = useNavigate()
 
  const dispatch = useDispatch();
  const post = useSelector((state)=>state.post.data);
@@ -38,7 +31,7 @@ function Action(){
  const getPost =async () =>{
     try{
         const {data} = await axios.get('https://leaguex.s3.ap-south-1.amazonaws.com/task/shopping/catalogue.json');
-    dispatch({type:"INCREMENT",post:data});
+    dispatch({type:"CART",post:data});
         return data;
     }
     catch(error)
@@ -49,23 +42,16 @@ function Action(){
 
 
 
-// console.log("post", post)
  useEffect (()=>{
-    setCopyPost(post)
+    // setCopyPost(post)
     getPost()
-
   },[])
 
 
 useEffect(()=>{
-
     const postWithCount =post && post.map(t1 => ({...t1, ...cartProducts.find(t2 => t2.product_id === t1.id)}))
-
     setCopyPost(postWithCount)
-
 },[post])
-
-
 
   const searchFunc = (e) => {
     setSearchText(e)
@@ -85,8 +71,6 @@ const onAdd = (event ,param) =>{
 
     setDisplay([...display, param.id])
     dispatch({type:"ADD_CART",expense:{product_id:param.id,count:1}})
-
-   console.log(display)
 }
 
 
@@ -112,7 +96,6 @@ const changeCount = (product_id,count) =>{
                 return product;
             };
         });
-
         setCopyPost(removedCount)
 
         dispatch({type:"REMOVE_CART",id:product_id})
@@ -130,11 +113,11 @@ const changeCount = (product_id,count) =>{
 
 const onFilter = (e, type) =>{
     console.log("type", type)
-    // console.log(e)
+
     if( type ){
         let colors = document.querySelector(".colorFilter").querySelectorAll("input:checked")
         let selectedColors = [...colors].map(a => a.name);
-        console.log("selectedColors", colors)
+        console.log("selectedColors", selectedColors)
 
         let gender =document.querySelector(".genderfilter").querySelectorAll("input:checked")
         let selectedGender = [...gender].map(a => a.name);
@@ -149,6 +132,7 @@ const onFilter = (e, type) =>{
         let selectedPrice = [...price].map(a => a.name);
         console.log("selectedType", selectedPrice)
 
+
         let filteredArray = post.filter((item) => {
             return ((selectedColors.length > 0 ? (selectedColors).includes(item.color) : true )   &&
             (selectedGender.length>0 ? (selectedGender).includes(item.gender) : true) &&
@@ -156,7 +140,6 @@ const onFilter = (e, type) =>{
             (selectedPrice.includes("a") ? item.price <= 250 :true) &&
             (selectedPrice.includes("b") ? (item.price > 250 && item.price <= 450 ) :true) &&
             (selectedPrice.includes("c") ? (item.price > 450) :true)
-
              )})
       
       setCopyPost(filteredArray)
@@ -164,13 +147,7 @@ const onFilter = (e, type) =>{
 
     console.log("selectedPrice", price)
 
-    // if(type){
-    //     const filtered = filteredArray.filter(employee => {
-    //                     return employee.type <= 250;
-    //               })
-    //               console.log("filtered", filtered)
-
-    // }
+    
     
 
 }
@@ -194,7 +171,11 @@ return(
             onClick: () => setCollapsed(!collapsed),
           })}
           </button>
+          <button onClick={() => { 
+               navigate("/Task");
+        }}>Task</button>
 </div>
+
 
 <Layout>
      {!collapsed && <Sider trigger={null} collapsible collapsed={collapsed}>
