@@ -255,6 +255,14 @@
 #filter-btn{
     margin-top: 10px !important;
 }
+
+element.style {
+}
+#incrementbtn {
+    width: 27px;
+    cursor: pointer;
+    height: 24px;
+}
 }
 
 .ant-layout-sider.ant-layout-sider-dark{
