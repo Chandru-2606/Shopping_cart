@@ -171,9 +171,7 @@ return(
             onClick: () => setCollapsed(!collapsed),
           })}
           </button>
-          <button onClick={() => { 
-               navigate("/Task");
-        }}>Task</button>
+          
 </div>
 
 
